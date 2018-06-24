@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div class="container">
+    <h1>Cadastro</h1>
   </div>
 </template>
 
@@ -8,5 +8,5 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang='scss' scoped>
 </style>

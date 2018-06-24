@@ -1,6 +1,32 @@
 var path = require('path')
 var webpack = require('webpack')
 
+function resolveResouce(fileName) {
+  return path.resolve(__dirname, './src/assets/scss/' + fileName)
+}
+
+const cssLoader = {
+  loader: 'css-loader',
+  options: {
+    sourceMap: false,
+  }
+}
+
+function generateSassResourceLoader() {
+  var loaders = [
+    cssLoader,
+    'sass-loader', {
+      loader: 'sass-resources-loader',
+      options: {
+        resources: [
+          resolveResouce('index.scss'),
+        ]
+      }
+    }
+  ];
+  return ['vue-style-loader'].concat(loaders)
+}
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -41,16 +67,8 @@ module.exports = {
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
+            scss: generateSassResourceLoader(),
+            sass: generateSassResourceLoader(),
           },
           // cssSourceMap: false,
           // transformToRequire: {

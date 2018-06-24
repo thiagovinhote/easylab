@@ -9,10 +9,6 @@
 *    `:before` to contain the top-margins of child elements.
 */
 
-html {
-  display: flex;
-}
-
 :root { @include font-size(16px, 24px); }
 
 *,

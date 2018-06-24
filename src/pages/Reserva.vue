@@ -1,12 +1,43 @@
 <template>
   <div class="container">
-    <h1>Reserva</h1>
+    <div class="content">
+      <h1>Reserva</h1>
+      <form>
+        <c-input label="Dia" />
+        <c-input label="Turno" />
+        <c-input label="Tempo" />
+      </form>
+      <c-button name="Reservar" class="btn-form" @click.native="clickReservar()" />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    clickReservar() {
+      console.log('clickReservar');
+    },
+  },
+};
 </script>
 
 <style lang='scss' scoped>
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  form {
+    margin: 10px 0;
+  }
+
+  .btn-form {
+    margin-top: 50px;
+  }
 </style>

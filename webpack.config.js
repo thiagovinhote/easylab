@@ -1,10 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
-}
-
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -56,13 +52,13 @@ module.exports = {
               'sass-loader?indentedSyntax'
             ]
           },
-          cssSourceMap: false,
-          transformToRequire: {
-            video: 'src',
-            source: 'src',
-            img: 'src',
-            image: 'xlink:href'
-          }
+          // cssSourceMap: false,
+          // transformToRequire: {
+          //   video: 'src',
+          //   source: 'src',
+          //   img: 'src',
+          //   image: 'xlink:href'
+          // }
           // other vue-loader options go here
         }
       },
@@ -70,7 +66,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [resolve('src')]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -83,8 +78,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      'vue$': 'vue/dist/vue.esm.js'
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -109,7 +103,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
       compress: {
         warnings: false
       }

@@ -1,9 +1,9 @@
 <template>
   <header>
     <nav class="container">
-      <a href="javascript::void(0)" class="brand">
+      <router-link to="/reserva" href="javascript::void(0)" class="brand">
         <img src="../assets/img/default.jpg" alt="">
-      </a>
+      </router-link>
     </nav>
   </header>
 </template>

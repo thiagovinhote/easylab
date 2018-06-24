@@ -17,6 +17,7 @@ export default {
   methods: {
     clickReservar() {
       console.log('clickReservar');
+      this.$router.push({ name: 'Login' });
     },
   },
 };

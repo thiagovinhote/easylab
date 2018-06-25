@@ -7,17 +7,26 @@
         <c-input label="Turno" />
         <c-input label="Tempo" />
       </form>
-      <c-button name="Reservar" class="btn-form" @click.native="clickReservar()" />
+      <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
+    </div>
+    <div class="content">
+      <card-lab name="Laboratório E4" />
+      <card-lab name="Laboratório E4" />
     </div>
   </div>
 </template>
 
 <script>
+import CardLab from '../components/CardLab';
+
 export default {
+  components: {
+    CardLab,
+  },
+
   methods: {
     clickReservar() {
       console.log('clickReservar');
-      this.$router.push({ name: 'Login' });
     },
   },
 };

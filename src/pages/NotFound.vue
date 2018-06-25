@@ -18,28 +18,30 @@ export default {};
 </script>
 
 <style lang='scss' scoped>
-  $color-darked: #464646;
-  $color-red: #ed2c39;
-  $color-grey: #9b9b9b;
-  $color-white: #FFFFFF;
-
   .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 160px;
 
+    @include mobile {
+      margin-top: 20px;
+      flex-direction: column-reverse;
+    }
+
     div.left {
       padding-top: 30px;
+      margin: 0 auto;
+
       h1.title {
         margin: 10px 0;
-        font-size: 50px;
+        @include font-size(30px, 50px);
         font-weight: 900;
         color: $color-darked;
       }
       span.subtitle {
         display: block;
-        font-size: 18px;
+        @include font-size(14px, 18px);
         color: $color-grey;
       }
 
@@ -56,6 +58,12 @@ export default {};
         border: 2px solid transparent;
         font-weight: bold;
         font-size: 20px;
+        outline: none;
+        transition: all 100ms ease-in-out;
+
+        @include mobile {
+          font-size: 16px;
+        }
 
         &:hover {
           border: 2px dashed $color-darked;
@@ -67,8 +75,31 @@ export default {};
       }
     }
     div.right {
+      margin: 0 auto;
+
       img {
         height: 250px;
+
+        @include mobile {
+          width: 246px;
+        }
+      }
+
+      #svg {
+        #tela,
+        #coding-letter {
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+          #tela {
+            fill: #EA6148;
+          }
+
+          #coding-letter {
+            fill: #38454F;
+          }
+        }
       }
     }
   }

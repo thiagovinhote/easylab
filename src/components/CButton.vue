@@ -20,28 +20,30 @@ export default {
   $color-blue: blue;
 
   .btn {
-    background-color: $color-blue;
-    padding: 10px;
-    font-size: 14px;
+    display: block;
+    padding: 13px 0;
+    background-color: $color-red;
+    text-align: center;
     color: $color-white;
-    font-weight: 600;
+    text-decoration: none;
     text-transform: uppercase;
-    min-height: 45px;
-    min-width: 140px;
-    border: 1px solid $color-blue;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
+    border: 2px solid transparent;
+    font-weight: bold;
+    font-size: 20px;
     outline: none;
-    border-radius: 10px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+
+    @include mobile {
+      font-size: 16px;
+    }
 
     &:hover {
-      background-color: $color-white;
-      color: $color-blue;
-      border: 1px dashed $color-blue;
+      border: 2px dashed $color-darked;
     }
 
     &:active {
-      transform: translateY(5px);
+      transform: translateY(5px);          
     }
   }
 </style>

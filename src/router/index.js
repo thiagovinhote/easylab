@@ -5,11 +5,16 @@ import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
 import Reserva from '../pages/Reserva';
 import Solicitacoes from '../pages/Solicitacoes';
+import NotFound from '../pages/NotFound';
 import Vue from 'vue';
 
 Vue.use(Router);
 
 const routes = [
+  {
+    path: '/',
+    redirect: '/login',
+  },
   {
     path: '/login',
     name: 'Login',
@@ -30,6 +35,10 @@ const routes = [
     name: 'Solicitacoes',
     component: Solicitacoes,
   },
+  {
+    path: '*',
+    component: NotFound,
+  }
 ];
 
 export default new Router({

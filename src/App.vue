@@ -18,6 +18,12 @@ export default {
 </script>
 
 <style lang="scss">
+  #app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   .fade-enter-active, .fade-leave-active {
     transition-property: opacity;
     transition-duration: .25s;

@@ -15,7 +15,7 @@ export default {};
 <style lang='scss' scoped>
   header {
     height: 50px;
-    background-color: #ed2c39;
+    background-color: #6ED9A0;
 
     nav {
       height: 100%;

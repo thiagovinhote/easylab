@@ -2,29 +2,18 @@
   <div class="hero">
     <div class="container">
       <div class="left">
-        <img class="brand" src="../assets/img/default.jpg" alt="Logo EasyLab">
+        <img class="brand" src="../../assets/img/default.jpg" alt="Logo EasyLab">
       </div>
       <div class="right">
-        <form>
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="E-mail">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="Senha">
-          </div>
-          <button type="button" class="btn">Login</button>
-          <div class="group-btn">
-            <a href="javascript::void(0)" class="btn-link">Cadastrar</a>
-            <a href="javascript::void(0)" class="btn-link">Esqueci minha senha</a>
-          </div>
-        </form>
+        <router-view/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+}
 </script>
 
 <style lang='scss' scoped>
@@ -63,7 +52,7 @@ export default {};
 
       img.brand {
         max-width: 250px;
-        height: auto;
+        // height: auto;
         object-fit: contain;
         height: 100%;
         width: 100%;
@@ -75,13 +64,15 @@ export default {};
 
       &:after {
         content: '';
-        background-color: rgba(#5B666B, 0.5);
+        background-color: rgba(91, 102, 107, 0.5);
         border-radius: 2px;
         width: 1px;
-        height: 100%;
+        height: 400px;
         position: absolute;
         left: -30px;
         top: 0;
+        bottom: 0;
+        margin: auto;
 
         @include mobile {
           width: 100%;
@@ -89,26 +80,6 @@ export default {};
           left: 0;
           top: 15px;
         }
-      }
-
-      margin: 0 15px;
-
-      @include mobile {
-        margin: 0 auto;
-      }
-
-      form {
-        margin: 0 auto;
-        max-width: 350px;
-        // @include desktop {
-        // }
-      }
-
-      div.group-btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 10px;
       }
     }
   }

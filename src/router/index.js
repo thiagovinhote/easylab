@@ -1,8 +1,7 @@
 import vue from 'vue';
 import Router from 'vue-router';
 
-import Login from '../pages/Login';
-import Cadastro from '../pages/Cadastro';
+import { routes as routesAuth } from '../pages/auth';
 import Reserva from '../pages/Reserva';
 import Solicitacoes from '../pages/Solicitacoes';
 import NotFound from '../pages/NotFound';
@@ -15,16 +14,7 @@ const routes = [
     path: '/',
     redirect: '/login',
   },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/cadastro',
-    name: 'Cadastro',
-    component: Cadastro,
-  },
+  ...routesAuth,
   {
     path: '/reserva',
     name: 'Reserva',

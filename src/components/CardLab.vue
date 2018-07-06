@@ -12,6 +12,26 @@ export default {
       required: true,
     },
   },
+
+  created() {
+
+  },
+  
+  mounted() {
+
+  },
+
+  methods: {
+    acao () {
+
+    },
+  },
+
+  computed: {
+    validar () {
+      return true;
+    },
+  },
 };
 </script>
 

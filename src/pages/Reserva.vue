@@ -2,26 +2,38 @@
   <div class="container">
     <div class="content">
       <h1>Reserva</h1>
-      <form>
+      <!-- <form>
         <c-input label="Dia" />
         <c-input label="Turno" />
         <c-input label="Tempo" />
-      </form>
+      </form> -->
       <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
     </div>
     <div class="content">
-      <card-lab name="Laboratório E4" />
-      <card-lab name="Laboratório E4" />
+      <card-lab v-for="project in projects" :key="project.id" :name="project.name" />
     </div>
   </div>
 </template>
 
 <script>
+import api from '../services/api';
 import CardLab from '../components/CardLab';
 
 export default {
   components: {
     CardLab,
+  },
+
+  async mounted() {
+    const response = await api.get('/projects/');
+    const { results } = response.data;
+    this.projects = results;
+  },
+
+  data() {
+    return {
+      projects: [],
+    };
   },
 
   methods: {

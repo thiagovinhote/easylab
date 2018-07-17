@@ -10,7 +10,7 @@
       <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
     </div>
     <div class="content">
-      <card-lab v-for="project in projects" :key="project.id" :name="project.name" />
+      <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  />
     </div>
   </div>
 </template>
@@ -24,15 +24,22 @@ export default {
     CardLab,
   },
 
-  async mounted() {
-    const response = await api.get('/projects/');
-    const { results } = response.data;
-    this.projects = results;
-  },
+  // async mounted() {
+  //   const response = await api.get('/projects/');
+  //   const { results } = response.data;
+  //   this.projects = results;
+  // },
 
   data() {
     return {
-      projects: [],
+      reservas : [
+          {nome: 'Programação WEB', lab: 'Laboratório E4', dia: 'Seg', time: '18:00'},
+          {nome: 'Projeto de Sistemas', lab: 'Laboratório E4', dia: 'Ter', time: '08:00'},
+          {nome: 'Redes de Computadores', lab: 'Laboratório E3', dia: 'Qua', time: '16:30'},
+          {nome: 'Lógica de Programação', lab: 'Laboratório E1', dia: 'Qua', time: '20:30'},
+          {nome: 'Laboratório de Programação', lab: 'Laboratório E12', dia: 'Ter', time: '18:00'},
+          {nome: 'Estruturas de Dados 1', lab: 'Laboratório E8', dia: 'Sex', time: '20:30'}
+      ],
     };
   },
 

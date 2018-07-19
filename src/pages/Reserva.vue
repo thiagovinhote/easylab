@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="content">
-      <h1>Reserva</h1>
       <!-- <form>
         <c-input label="Dia" />
         <c-input label="Turno" />
         <c-input label="Tempo" />
       </form> -->
       <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
+      <h1 class="main-title-reservas">Minhas reservas</h1>
     </div>
     <div class="content">
       <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  />
@@ -29,6 +29,10 @@ export default {
   //   const { results } = response.data;
   //   this.projects = results;
   // },
+
+
+//cossum api from https://gitar.com/davidcsm/reservas
+
 
   data() {
     return {
@@ -53,12 +57,19 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .container {
+    background-color: #242c31;
+  }
+
+
+  h1.main-title-reservas{
+    color: white;
+  }
   .content {
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: center;
-
     max-width: 400px;
     margin: 0 auto;
   }

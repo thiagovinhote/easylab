@@ -19,7 +19,7 @@ export default {
 <style lang='scss' scoped>
   .hero {
     height: 100%;
-    background-color: #2A363F;
+    background-color: #242c31;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,12 +1,14 @@
 <template>
-  <div class="card-container">
+  <div class="card-container"> 
     <div class="description">
-      <h2 class="disciplina">{{nome}}</h2>
+      <!-- <h2 class="disciplina">{{nome}}</h2> -->
+      <h2 class="disciplina">Lógica de Programação</h2>
       <h2 class="laboratorio">{{lab}}</h2>
     </div>
     <div class="detail">
       <h2 class="dia">{{dia}}</h2>
-      <h2 class="time">{{time}}</h2>
+      <!-- <h2 class="time">{{time}}</h2> -->
+      <h2 class="time">14:30</h2>
     </div>
   </div>
   
@@ -16,10 +18,10 @@
 <script>
 export default {
   props: {
-    nome: {
-      type: String,
-      required: true,
-    },
+    // nome: {
+    //   type: String,
+    //   required: true,
+    // },
     lab: {
       type: String,
       required: true,
@@ -28,9 +30,14 @@ export default {
       type: String,
       required: true,
     },
-    time: {
-      type: String,
-      required: true,
+    // time: {
+    //   type: String,
+    //   required: true,
+    // },
+
+    reservas : {
+      type: String[{}],
+      required: false,
     }
   },
 

@@ -1,5 +1,4 @@
 import { create } from 'axios';
-
 export default create({
-    baseURL: "https://apivinhote.herokuapp.com/api/v1"
+    baseURL: "https://projetosinformacao.herokuapp.com/easy/api/v1"
 });

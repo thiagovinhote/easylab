@@ -1,16 +1,16 @@
 <template>
   <form>
     <div class="form-group">
-      <input type="text" placeholder="Nome" class="form-control">
+      <input type="text" placeholder="Nome" class="form-control" v-model="name">
     </div>
     <hr/>
     <div class="form-group">
-      <input type="email" placeholder="E-mail" class="form-control">
+      <input type="email" placeholder="E-mail" class="form-control" v-model="email">
     </div>
     <div class="form-group">
-      <input type="password" placeholder="Senha" class="form-control">
+      <input type="password" placeholder="Senha" class="form-control" v-model="password">
     </div>
-    <button type="button" class="btn">Cadastrar</button>
+    <button type="button" class="btn" v-on:click="reg">Cadastrar</button>
     <div class="group-btn">
       <router-link to="/login" class="btn-link">Fazer login</router-link>
       <router-link to="/recupera-senha" class="btn-link">Esqueci minha senha</router-link>
@@ -19,7 +19,32 @@
 </template>
 
 <script>
-export default {};
+import api from '../../../services/api';
+
+export default {
+  data() {
+    return {
+      name: "",
+      email : "",
+      password: ""
+    }
+  },
+  methods : {
+    reg() {
+        api.post('/auth/register', {
+          "name": this.name,
+          "email": this.email,
+          "password": this.password,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  }
+};
 </script>
 
 <style lang='scss' scoped>

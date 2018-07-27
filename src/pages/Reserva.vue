@@ -11,7 +11,7 @@
     </div>
     <div class="content">
       <!-- <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  /> -->
-      <card-lab v-for="reserva in reservas" :key="reserva.id"  :lab="reserva.laboratory" :dia="reserva.data" />
+      <card-lab v-for="reserva in reservas" :key="reserva.id"  :lab="reserva.laboratory.name" :dia="reserva.data" />
     </div>
   </div>
 </template>
@@ -24,34 +24,15 @@ export default {
   components: {
     CardLab,
   },
-
   async mounted(){
     const response = await api.get('/reservation/');
     const { result } = response.data;
     this.reservas = response.data.reservations;
-    console.log(response);
+    console.log(response.data);
   },
-
-  // async mounted() {
-  //   const response = await api.get('/projects/');
-  //   const { results } = response.data;
-  //   this.projects = results;
-  // },
-
-
-//cossum api from https://gitar.com/davidcsm/reservas
-
-
-  data() {
+ data() {
     return {
-      reservas : [
-          // {nome: 'Programação WEB', lab: 'Laboratório E4', dia: 'Seg', time: '18:00'},
-          // {nome: 'Projeto de Sistemas', lab: 'Laboratório E4', dia: 'Ter', time: '08:00'},
-          // {nome: 'Redes de Computadores', lab: 'Laboratório E3', dia: 'Qua', time: '16:30'},
-          // {nome: 'Lógica de Programação', lab: 'Laboratório E1', dia: 'Qua', time: '20:30'},
-          // {nome: 'Laboratório de Programação', lab: 'Laboratório E12', dia: 'Ter', time: '18:00'},
-          // {nome: 'Estruturas de Dados 1', lab: 'Laboratório E8', dia: 'Sex', time: '20:30'}
-      ],
+      reservas : [],
     };
   },
 

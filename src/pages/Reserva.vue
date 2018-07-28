@@ -28,7 +28,7 @@ export default {
     console.log("Pegou o token do storage:" + localStorage.token);
     const response = await api.get('/reservation/', {
         headers: {
-          Authorization: localStorage.token
+          Authorization: `Bearer ${localStorage.token}`
       }
     });
     const { result } = response.data;

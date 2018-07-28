@@ -25,7 +25,12 @@ export default {
     CardLab,
   },
   async mounted(){
-    const response = await api.get('/reservation/');
+    console.log("Pegou o token do storage:" + localStorage.token);
+    const response = await api.get('/reservation/', {
+        headers: {
+          Authorization: localStorage.token
+      }
+    });
     const { result } = response.data;
     this.reservas = response.data.reservations;
     console.log(response.data);

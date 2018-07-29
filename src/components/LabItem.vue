@@ -1,32 +1,35 @@
-<template v-on:click="select('Form cannot be submitted yet.', $event)">
-    <div class="container">
+<template>
+    <div class="container" :class="{'selected': isSelected, 'unselected': !isSelected}">
         <h3 class="name-lab">{{name}}</h3>
     </div>
 </template>
 
 <script>
 export default {
-    props : {
-        name : {
-            type: String,
-            required: true,
-        }
+  props: {
+    name: {
+      type: String,
+      required: true
     },
-    methods : {
-        select: function (message, event) {
-            // agora temos acesso ao evento nativo
-            // if (event) event.preventDefault()
-            // alert(message)
-            console.log(event);
-        }
+    isSelected: {
+      type: Boolean
     }
-}
+  },
+};
 </script>
 
 <style scoped>
-    .container {
-        border: 1px solid black;
-        margin: 8px;
-        padding: 10px;
-    }
+.container {
+  border: 1px solid black;
+  margin: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #4e4e4e;
+}
+.unselected {
+  background-color: white;
+}
 </style>

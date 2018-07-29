@@ -7,7 +7,7 @@
         <c-input label="Tempo" />
       </form> -->
       <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
-      <h1 class="main-title-reservas">Minhas reservas</h1>
+      <h1 class="main-title-reservas">Minhas reservas cheias</h1>
     </div>
     <div class="content">
       <!-- <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  /> -->

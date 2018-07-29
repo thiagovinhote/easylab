@@ -11,7 +11,7 @@ export default [
     children: [
       {
         path: '/login',
-        name: 'Login',
+        name: 'login',
         component: Login,
       },
       {

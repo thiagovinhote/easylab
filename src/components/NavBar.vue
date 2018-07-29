@@ -4,6 +4,9 @@
       <router-link to="/reserva" href="javascript::void(0)" class="brand">
         <img src="../assets/img/default.jpg" alt="">
       </router-link>
+      <router-link to="/laboratorios" href="javascript::void(0)" class="brand">
+        <span class="link-nav">laboratorios</span>
+      </router-link>
     </nav>
   </header>
 </template>
@@ -33,5 +36,9 @@ export default {};
         object-fit: cover;
       }
     }
+  }
+
+  .link-nav{
+    color: white;
   }
 </style>

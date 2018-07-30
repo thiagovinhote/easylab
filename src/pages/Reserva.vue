@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container-conteudo">
     <div class="content">
       <!-- <form>
         <c-input label="Dia" />
         <c-input label="Turno" />
         <c-input label="Tempo" />
       </form> -->
-      <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
-      <h1 class="main-title-reservas">Minhas reservas realizadas</h1>
+      <!-- <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" /> -->
+      <h2 class="page-title">Reservas realizadas</h2>
     </div>
     <div class="content">
       <!-- <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  /> -->
@@ -19,7 +19,9 @@
       @click.native="select(reserva._id, reserva.laboratory._id, reserva)"
        />
     </div>
-    <button type="button" class="btn" v-on:click="deletar">Deletar</button>
+    <div class="container-button">
+      <button type="button" class="btn-deletar" v-on:click="deletar" v-show="estaSelecionado">Deletar</button>
+    </div>
   </div>
 </template>
 
@@ -44,7 +46,8 @@ export default {
   },
  data() {
     return {
-      idSelecionado: "",
+      idSelecionado: null,
+      estaSelecionado : false,
       reservas : [],
       labId: "",
       reservaSelecionada: null,
@@ -63,6 +66,7 @@ export default {
       this.idSelecionado = id;
       this.labId = labId;
       this.reservaSelecionada = reserva;
+      this.estaSelecionado = true;
       console.log("Id reservation: " + this.idSelecionado + " | Id Laboratório: " + this.labId + "| Reserva selecionada +" + this.reservaSelecionada.observations);
     },
     deletar(lab){
@@ -93,20 +97,46 @@ export default {
 <style lang='scss' scoped>
   .container {
     background-color: #242c31;
+    border-bottom: 5px solid orangered;
+    height: 100%;
   }
-
-
-
-  h1.main-title-reservas{
+  .page-title {
     color: white;
+    margin: 8px;
   }
   .content {
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: center;
-    max-width: 400px;
+    min-width: 350px;
     margin: 0 auto;
+  }
+
+  .container-conteudo {
+    /* background-color: #242c31; */
+    height: 100%;
+    /* widows: 100%; */
+    min-width: 350px;
+    // border-bottom: 5px solid orangered;
+    margin-bottom: 0px;
+  }
+
+
+  .container-button{
+    width: 100%;
+    padding: 8px;
+    // border: 1px solid green;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .btn-deletar{
+    width: 100%;
+    background-color: #52a5ff;
+    color: white;
+    border-radius: 5px;
+    min-height: 55px;
   }
 
   form {

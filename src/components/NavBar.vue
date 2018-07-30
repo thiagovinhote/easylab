@@ -19,10 +19,17 @@
 
 <script>
 export default {
+  mounted(){
+    console.log("---> VALOR DE LOCALSTORAGE ----> " + localStorage.length);
+  },
   methods : {
     redirect(){
       localStorage.clear();
       this.$router.push('login');
+    },
+    isLoged(){
+      if(localStorage.length > 0){return true;}
+      else{return false;}
     }
   }
 };

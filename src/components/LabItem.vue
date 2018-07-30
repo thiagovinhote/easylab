@@ -1,5 +1,5 @@
 <template>
-    <div class="container" :class="{'selected': isSelected, 'unselected': !isSelected}">
+    <div class="container-lab-item" :class="{'selected': isSelected, 'unselected': !isSelected}">
         <h3 class="name-lab">{{name}}</h3>
     </div>
 </template>
@@ -19,17 +19,19 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  border: 1px solid black;
+.container-lab-item {
   margin: 8px;
   padding: 10px;
   cursor: pointer;
+  border-radius: 5px;
+  border-left: 5px solid #52a5ff;
+  color: white;
 }
 
 .selected {
-  background-color: #4e4e4e;
+  background-color: rgb(33, 62, 116);
 }
 .unselected {
-  background-color: white;
+  background-color: #1b2125;
 }
 </style>

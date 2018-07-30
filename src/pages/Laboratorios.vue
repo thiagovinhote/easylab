@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1>Lista de Laboratórios</h1>
+  <div class="container-conteudo">
+    <h2 class="page-title">Lista de Laboratórios</h2>
     <!-- Aviso quando não há laboratórios disponíveis -->
     <!-- <h3 class="alert">Não há laboratórios disponíveis para reserva</h3> -->
     <lab-item
@@ -11,9 +11,14 @@
       @click.native="select(lab._id)"
       :isSelected="isSelected(lab._id)"
     />
+    <div class="container-comentario">
+      <label for="observacao" style="color: white;">Observações</label>
+      <input v-model="textObservacao" placeholder="Adicione aqui observações sobre a reserva de um laboratório" class="observacao-container">
+    </div>
+    <div class="container-button">
+      <button type="button" class="btn-reservar" v-on:click="reservar" v-show="estaSelecionado">Reservar</button>
+    </div>
 
-    <input v-model="textObservacao" placeholder="comente algo" class="observacao-container">
-    <button type="button" class="btn" v-on:click="reservar">Reservar</button>
   </div>
 </template>
 <script>
@@ -36,12 +41,14 @@ export default {
       idSelecionado: null,
       labs: [],
       isActive: false,
-      textObservacao : ''
+      textObservacao : '',
+      estaSelecionado :false
     };
   },
   methods: {
     select(id) {
       this.idSelecionado = id;
+      this.estaSelecionado = true;
       console.log(this.idSelecionado);
     },
     isSelected(id) {
@@ -75,11 +82,50 @@ export default {
 </script>
     
 <style>
+.container-conteudo {
+  /* background-color: #242c31; */
+  height: 100%;
+  /* widows: 100%; */
+  min-width: 350px;
+  /* border-bottom: 5px solid orangered; */
+  margin-bottom: 0px;
+}
+
 .observacao-container{
     border: 1px solid black;
     width: 100%;
     height: 70px;
-    margin-top: 15px;
+    /* margin: 8px; */
+    padding: 8px;
+    margin-top: 10px;
+    min-width: 350px;
+}
+
+.container-comentario{
+  width: 100%;
+  /* background-color: gold; */
+  padding: 8px;
+}
+
+.container-button {
+  width: 100%;
+  padding: 8px;
+  /* border: 1px solid green; */
+  position: absolute;
+  bottom: 0;
+}
+
+.btn-reservar{
+  width: 100%;
+  background-color: #52a5ff;
+  color: white;
+  border-radius: 5px;
+  min-height: 55px;
+}
+
+.page-title {
+  color: white;
+  margin: 8px;
 }
 
 .alert {
@@ -88,6 +134,7 @@ export default {
     margin-bottom: 10px;
     color: orange;
 }
+
 
 </style>
 

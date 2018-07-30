@@ -11,9 +11,17 @@
 import NavBar from './components/NavBar';
 
 export default {
+  updated(){
+    
+  },
   components: {
     NavBar,
   },
+  data(){
+    return {
+      estaLogado : false
+    }
+  }
 };
 </script>
 
@@ -22,6 +30,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #242c31;
   }
 
   .fade-enter-active, .fade-leave-active {

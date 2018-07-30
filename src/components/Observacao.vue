@@ -1,10 +1,11 @@
 <template>
 <div class="container-observacao">
-    <input type="text" placeholder="texto here" class="input-observ">
+    <input type="text" placeholder="texto here" class="input-observ"> 
 </div>
 </template>
 <script>
 export default {
+    
 }
 </script>
 

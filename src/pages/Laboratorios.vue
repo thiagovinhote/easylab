@@ -1,17 +1,19 @@
 <template>
   <div class="container">
     <h1>Lista de Laboratórios</h1>
+    <!-- Aviso quando não há laboratórios disponíveis -->
+    <!-- <h3 class="alert">Não há laboratórios disponíveis para reserva</h3> -->
     <lab-item
       v-for="lab in labs"
       :key="lab.id"
       :name="lab.name"
-      :isSelected="isSelected(lab._id)"
+      v-show="lab.isReserved == false"
       @click.native="select(lab._id)"
+      :isSelected="isSelected(lab._id)"
     />
-    <observacao></observacao>
-    <button type="button" class="btn" v-on:click="reservar">Reservar</button>
 
-    <!-- <button v-on:click="warn('Form cannot be submitted yet.', $event)">Enviar</button> -->
+    <input v-model="textObservacao" placeholder="comente algo" class="observacao-container">
+    <button type="button" class="btn" v-on:click="reservar">Reservar</button>
   </div>
 </template>
 <script>
@@ -31,9 +33,10 @@ export default {
   },
   data: function() {
     return {
-      idSelecionado: "",
+      idSelecionado: null,
       labs: [],
-      isActive: false
+      isActive: false,
+      textObservacao : ''
     };
   },
   methods: {
@@ -49,19 +52,43 @@ export default {
         console.log("Olha o id selecionado:", this.idSelecionado);
         const self = this;
         
-        api.post('/administration/', {"laboratory" : self.idSelecionado}, {headers : {Authorization: `Bearer ${localStorage.token}`}}
+        api.post('/reservation/register/', {"laboratory" : this.idSelecionado, "observations" : this.textObservacao}, {headers : {Authorization: `Bearer ${localStorage.token}`}}
         ).then(function (response) {
           console.log(response);
+          //se conseguir fazer uma reserva altera o status do laboratório para reservado (isReserved = true)
         })
         .catch(function (error) {
           console.log(error);
         });
+
+        api.patch('/administration/' + this.idSelecionado + '/',  [{"propName": "isReserved", "value": true }], {headers : {Authorization: `Bearer ${localStorage.token}`}}
+        ).then(function (response) {
+            console.log(response);
+        }).catch(function(error){
+            console.log(error)
+        });
+        // [{"propName": "isReserved", "value": true }]
+        // console.log(this.textObservacao);
     }
   }
 };
 </script>
     
 <style>
+.observacao-container{
+    border: 1px solid black;
+    width: 100%;
+    height: 70px;
+    margin-top: 15px;
+}
+
+.alert {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: orange;
+}
+
 </style>
 
 

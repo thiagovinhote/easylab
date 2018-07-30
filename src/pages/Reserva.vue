@@ -7,12 +7,19 @@
         <c-input label="Tempo" />
       </form> -->
       <c-button name="Buscar Laboratórios" class="btn-form" @click.native="clickReservar()" />
-      <h1 class="main-title-reservas">Minhas reservas cheias</h1>
+      <h1 class="main-title-reservas">Minhas reservas realizadas</h1>
     </div>
     <div class="content">
       <!-- <card-lab v-for="reserva in reservas" :key="reserva.id" :nome="reserva.nome" :lab="reserva.lab" :dia="reserva.dia" :time="reserva.time"  /> -->
-      <card-lab v-for="reserva in reservas" :key="reserva.id"  :lab="reserva.laboratory.name" :dia="reserva.data" />
+      <card-lab v-for="reserva in reservas" 
+      :key="reserva.id"  
+      :lab="reserva.laboratory.name" 
+      :dia="reserva.data"
+      :isSelected="isSelected(reserva._id)"
+      @click.native="select(reserva._id, reserva.laboratory._id, reserva)"
+       />
     </div>
+    <button type="button" class="btn" v-on:click="deletar">Deletar</button>
   </div>
 </template>
 
@@ -37,7 +44,10 @@ export default {
   },
  data() {
     return {
+      idSelecionado: "",
       reservas : [],
+      labId: "",
+      reservaSelecionada: null,
     };
   },
 
@@ -45,6 +55,36 @@ export default {
     clickReservar() {
       console.log('clickReservar');
       this.$router.push({ name: 'NotFound' });
+    },
+    isSelected(id){
+      return this.idSelecionado === id;
+    },
+    select(id, labId, reserva){
+      this.idSelecionado = id;
+      this.labId = labId;
+      this.reservaSelecionada = reserva;
+      console.log("Id reservation: " + this.idSelecionado + " | Id Laboratório: " + this.labId + "| Reserva selecionada +" + this.reservaSelecionada.observations);
+    },
+    deletar(lab){
+      console.log("Cliclou em deletar");
+      api.delete('/reservation/' + this.idSelecionado + '/', {headers : {Authorization: `Bearer ${localStorage.token}`}}
+        ).then(function (response) {
+          console.log(response);
+          //Se conseguir deletar a reserva altera o status do laboratório para reservado (isReserved = false)
+          //deletou e alterou o status do laboratório para não reservado
+          const index = this.reservas.indexOf(this.reservaSelecionada);
+          this.reservas.splice(index, 1);
+        })
+        .catch(function (error) {
+          console.log(error);
+      });
+
+      api.patch('/administration/' + this.labId + '/',  [{"propName": "isReserved", "value": false }], {headers : {Authorization: `Bearer ${localStorage.token}`}}
+        ).then(function (response) {
+            console.log(response);
+        }).catch(function(error){
+            console.log(error)
+      });      
     },
   },
 };
@@ -54,6 +94,7 @@ export default {
   .container {
     background-color: #242c31;
   }
+
 
 
   h1.main-title-reservas{

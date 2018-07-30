@@ -1,18 +1,31 @@
 <template>
   <header>
     <nav class="container">
-      <router-link to="/reserva" href="javascript::void(0)" class="brand">
-        <img src="../assets/img/default.jpg" alt="">
+      <!-- <router-link to="/laboratorios" href="javascript::void(0)" class="brand"> -->
+        <router-link to="/laboratorios" href="javascript::void(0)" class="link-nav">
+          <h3>Laboratórios</h3>
+        </router-link>
+      
+      <!-- <router-link to="/reserva" href="javascript::void(0)" class="brand"> -->
+      <router-link to="/reserva" href="javascript::void(0)" class="link-nav">
+        <!-- <img src="../assets/img/default.jpg" alt=""> -->
+        <h3>Reservas</h3>  
       </router-link>
-      <router-link to="/laboratorios" href="javascript::void(0)" class="brand">
-        <span class="link-nav">laboratorios</span>
-      </router-link>
+      <!-- <router-link to="/" class="btn" @click="redirect">Logout</router-link> -->
+      <h3 class="link-nav">Logout</h3>
     </nav>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  methods : {
+    redirect(){
+      localStorage.clear();
+      this.$router.push('login');
+    }
+  }
+};
 </script>
 
 <style lang='scss' scoped>
@@ -40,5 +53,10 @@ export default {};
 
   .link-nav{
     color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin: auto;
+    // font-size: 18px;
   }
 </style>
